@@ -4,6 +4,7 @@ using System.Reflection;
 using Glint;
 using Glint.Config;
 using Glint.Util;
+using Lem.Server;
 
 #if !DEBUG
 using Glint.Util;
@@ -40,7 +41,11 @@ namespace Lem {
             try {
 #endif
             if (server) {
-                Global.log.writeLine("running server", Logger.Verbosity.Information);
+                Global.log.writeLine("created server", Logger.Verbosity.Information);
+                
+                var host = new ServerHost();
+                host.init(config);
+                host.run();
             }
             else {
                 using var game = new NGame(config);

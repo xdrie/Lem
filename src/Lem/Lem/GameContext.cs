@@ -1,4 +1,5 @@
 using Glint.Config;
+using Glint.Networking;
 using Microsoft.Xna.Framework;
 using Nez;
 using Nez.BitmapFonts;
@@ -10,6 +11,22 @@ namespace Lem {
 
         public override string title => GAME_NAME;
         public override string version => GAME_VERSION;
+
+        // - server config
+        public const string SERVER = "server";
+        public int hostPort = GlintNetServer.DEF_PORT;
+        public int timeout = GlintNetServer.DEF_TIMEOUT;
+        public int updateInterval = GlintNetServer.DEF_INTERVAL;
+        public bool logMessages = false;
+
+        public override void load() {
+            base.load();
+
+            pr.bind(ref hostPort, SERVER, rename(nameof(hostPort)));
+            pr.bind(ref timeout, SERVER, rename(nameof(timeout)));
+            pr.bind(ref updateInterval, SERVER, rename(nameof(updateInterval)));
+            pr.bind(ref logMessages, SERVER, rename(nameof(logMessages)));
+        }
     }
 
     public class GameContext : ContextBase<Config> {
