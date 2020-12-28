@@ -14,7 +14,7 @@ namespace Lem {
 
         // - server config
         public const string NET = "net";
-        public int netPort = GlintNetServer.DEF_PORT;
+        public int netPort = 14887;
         public int netTimeout = GlintNetServer.DEF_TIMEOUT;
         public int netInterval = GlintNetServer.DEF_INTERVAL;
         public bool netDebug = false;

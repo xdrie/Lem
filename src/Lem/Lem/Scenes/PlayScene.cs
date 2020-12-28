@@ -27,8 +27,9 @@ namespace Lem.Scenes {
             });
 
             var ups = 1000 / gameContext.config.netInterval;
+            var nick = "player";
             syncer = new ClientGameSyncer(netClient, "127.0.0.1", gameContext.config.netPort,
-                ups, ups * 2, 64,
+                nick, ups, ups * 2, 64,
                 debug: gameContext.config.netDebug);
 
             // register custom message handlers
