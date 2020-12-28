@@ -1,6 +1,7 @@
 using Glint;
 using Glint.Networking;
 using Glint.Util;
+using Lem.Net.Relays;
 
 namespace Lem.Server {
     public class ServerHost {
@@ -22,8 +23,7 @@ namespace Lem.Server {
             server.context.assemblies.Add(typeof(NGame).Assembly);
 
             // register custom message handlers
-            // TODO: custom message relay handlers
-            // server.handlers.register(new SomeRelayHandler(server.context));
+            server.handlers.register(new BeepRelay(server.context));
         }
 
         public void run() {

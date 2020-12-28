@@ -1,7 +1,10 @@
 using System.Reflection;
+using Glint;
 using Glint.Networking;
 using Glint.Networking.EntitySystems;
 using Glint.Networking.Game;
+using Lem.Net.Handlers;
+using Lem.Net.Messages;
 using Lime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
@@ -31,9 +34,10 @@ namespace Lem.Scenes {
             syncer = new ClientGameSyncer(netClient, "127.0.0.1", gameContext.config.netPort,
                 nick, ups, ups * 2, 64,
                 debug: gameContext.config.netDebug);
+            syncer.connectionStatusChanged += connectionChanged;
 
             // register custom message handlers
-            // TODO: register handlers
+            syncer.handlers.register(new BeepHandler(syncer));
 
             Core.Services.AddService(syncer); // register syncer
         }
@@ -51,6 +55,16 @@ namespace Lem.Scenes {
             syncer.connect();
         }
 
+        private void connectionChanged(bool connected) {
+            if (connected) {
+                Glint.Global.log.err("connected to server");
+            }
+            else {
+                Glint.Global.log.err("disconnected from server");
+                TransitionScene<MenuScene>();
+            }
+        }
+
         public Entity createSyncedEntity(string entityName, uint syncTag) {
             throw new System.NotImplementedException();
         }
@@ -61,6 +75,14 @@ namespace Lem.Scenes {
             if (Input.IsKeyPressed(Keys.Escape)) {
                 // request disconnect
                 syncer.disconnect();
+                TransitionScene<MenuScene>();
+            }
+
+            if (Input.IsKeyPressed(Keys.Space)) {
+                // send net signal
+                var beep = syncer.createGameUpdate<BeepMessage>();
+                beep.pips = Random.Range(1, 8);
+                syncer.sendGameUpdate(beep);
             }
         }
 
