@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Content Include="Data/**/*" CopyToOutputDirectory="PreserveNewest"/>
+        <EmbeddedResource Include="Res/**/*"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="XNez" Version="0.10.4"/>
+        <PackageReference Include="XNez.Glint" Version="0.10.3-beta"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Data"/>
+        <Folder Include="Res"/>
+    </ItemGroup>
+
+
+    <!-- CoreRT Support -->
+
+    <ItemGroup Condition="'$(UseCoreRT)' != ''">
+        <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="1.0.0-alpha-*"/>
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(UseCoreRT)' != ''">
+        <DefineConstants>$(DefineConstants);CORERT</DefineConstants>
+        <IlcGenerateCompleteTypeMetadata>false</IlcGenerateCompleteTypeMetadata>
+        <IlcOptimizationPreference>Size</IlcOptimizationPreference>
+        <IlcInvariantGlobalization>true</IlcInvariantGlobalization>
+        <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <RdXmlFile Include="rd.xml"/>
+    </ItemGroup>
+
+</Project>

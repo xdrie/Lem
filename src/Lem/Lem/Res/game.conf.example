@@ -1,0 +1,17 @@
+# rienn engine config [debug]
+
+[video]
+w=960
+h=540
+scale=1
+fullscreen=false
+scale_mode=0
+framerate=60
+
+[platform]
+log_level=4
+log_file=game.log
+
+[debug]
+clear_data=false
+cheats=false
