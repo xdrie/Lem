@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using Glint;
 using Glint.Config;
+using Glint.Util;
 
 #if !DEBUG
 using Glint.Util;
@@ -12,14 +13,14 @@ namespace Lem {
     class Program {
         public const string conf = "game.conf";
 
-        static void Main(string[] args) {
+        static void Main(bool server = false, string[]? args = null) {
 #if CORERT
             // CoreRT switch (https://github.com/dotnet/corert/issues/6946#issuecomment-464611673)
             AppContext.SetSwitch("Switch.System.Reflection.Assembly.SimulatedLocationInBaseDirectory", true);
 #endif
             var asm = Assembly.GetExecutingAssembly();
             var banner = asm.GetManifestResourceStream($"{asm.GetName().Name}.Res.banner.txt");
-            using (var sr = new StreamReader(banner)) {
+            using (var sr = new StreamReader(banner!)) {
                 Console.WriteLine(sr.ReadToEnd());
                 Console.WriteLine(Config.GAME_VERSION);
 #if DEBUG
@@ -33,12 +34,16 @@ namespace Lem {
             var confPath = Path.Join(Global.baseDir, conf);
             configHelper.ensureDefaultConfig(confPath, defaultConf);
             var confStr = File.ReadAllText(confPath);
-            var config = configHelper.load(confStr, args); // load and parse config
+            var config = configHelper.load(confStr, args ?? new string[0]); // load and parse config
             // run in crash-cradle (only if NOT debug)
 #if !DEBUG
             try {
 #endif
-            using (var game = new NGame(config)) {
+            if (server) {
+                Global.log.writeLine("running server", Logger.Verbosity.Information);
+            }
+            else {
+                using var game = new NGame(config);
                 game.Run();
             }
 #if !DEBUG
