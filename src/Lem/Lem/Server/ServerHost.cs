@@ -9,11 +9,11 @@ namespace Lem.Server {
         public void init(Config cfg) {
             // configure the server
             var serverConfig = new GlintNetServerContext.Config {
-                port = cfg.hostPort,
-                updateInterval = cfg.updateInterval,
-                timeout = cfg.timeout,
+                port = cfg.netPort,
+                updateInterval = cfg.netInterval,
+                timeout = cfg.netTimeout,
                 verbosity = (Logger.Verbosity) cfg.verbosity,
-                logMessages = cfg.logMessages,
+                logMessages = cfg.netDebug,
             };
 
             server = new GlintNetServer(serverConfig);

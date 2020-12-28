@@ -13,19 +13,19 @@ namespace Lem {
         public override string version => GAME_VERSION;
 
         // - server config
-        public const string SERVER = "server";
-        public int hostPort = GlintNetServer.DEF_PORT;
-        public int timeout = GlintNetServer.DEF_TIMEOUT;
-        public int updateInterval = GlintNetServer.DEF_INTERVAL;
-        public bool logMessages = false;
+        public const string NET = "net";
+        public int netPort = GlintNetServer.DEF_PORT;
+        public int netTimeout = GlintNetServer.DEF_TIMEOUT;
+        public int netInterval = GlintNetServer.DEF_INTERVAL;
+        public bool netDebug = false;
 
         public override void load() {
             base.load();
 
-            pr.bind(ref hostPort, SERVER, rename(nameof(hostPort)));
-            pr.bind(ref timeout, SERVER, rename(nameof(timeout)));
-            pr.bind(ref updateInterval, SERVER, rename(nameof(updateInterval)));
-            pr.bind(ref logMessages, SERVER, rename(nameof(logMessages)));
+            pr.bind(ref netPort, NET, rename(nameof(netPort)));
+            pr.bind(ref netTimeout, NET, rename(nameof(netTimeout)));
+            pr.bind(ref netInterval, NET, rename(nameof(netInterval)));
+            pr.bind(ref netDebug, NET, rename(nameof(netDebug)));
         }
     }
 

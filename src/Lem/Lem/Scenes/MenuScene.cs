@@ -23,6 +23,11 @@ namespace Lem.Scenes {
         public override void Update() {
             base.Update();
 
+
+            if (Input.IsKeyPressed(Keys.E)) {
+                TransitionScene<PlayScene>();
+            }
+
             if (Input.IsKeyPressed(Keys.Escape)) {
                 // end this scene
                 Core.Exit();
