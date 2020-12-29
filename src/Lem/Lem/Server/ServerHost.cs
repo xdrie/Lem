@@ -11,7 +11,7 @@ namespace Lem.Server {
             // configure the server
             var serverConfig = new GlintNetServerContext.Config {
                 port = cfg.netPort,
-                updateInterval = cfg.netInterval,
+                ups = cfg.netUps,
                 timeout = cfg.netTimeout,
                 verbosity = (Logger.Verbosity) cfg.verbosity,
                 logMessages = cfg.netDebug,

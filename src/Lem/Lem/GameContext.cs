@@ -16,16 +16,16 @@ namespace Lem {
         public const string NET = "net";
         public int netPort = 14887;
         public int netTimeout = GlintNetServer.DEF_TIMEOUT;
-        public int netInterval = GlintNetServer.DEF_INTERVAL;
+        public int netUps = GlintNetServer.DEF_UPS;
         public bool netDebug = false;
 
         public override void load() {
             base.load();
 
-            pr.bind(ref netPort, NET, rename(nameof(netPort)));
-            pr.bind(ref netTimeout, NET, rename(nameof(netTimeout)));
-            pr.bind(ref netInterval, NET, rename(nameof(netInterval)));
-            pr.bind(ref netDebug, NET, rename(nameof(netDebug)));
+            pr.bind(ref netPort, NET, "port");
+            pr.bind(ref netTimeout, NET, "timeout");
+            pr.bind(ref netUps, NET, "ups");
+            pr.bind(ref netDebug, NET, "debug");
         }
     }
 

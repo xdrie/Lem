@@ -24,12 +24,12 @@ namespace Lem.Scenes {
 
             // set up syncer
             var netClient = new LimeClient(new LimeNode.Configuration {
-                peerConfig = NetConfigurator.createClientPeerConfig(gameContext.config.netTimeout),
+                peerConfig = NetConfigurator.createClientPeerConfig("Glint-Lem", gameContext.config.netTimeout),
                 messageAssemblies = new[]
                     {typeof(GameSyncer).Assembly, Assembly.GetExecutingAssembly()}
             });
 
-            var ups = 1000 / gameContext.config.netInterval;
+            var ups = 1000 / gameContext.config.netUps;
             var nick = "player";
             syncer = new ClientGameSyncer(netClient, "127.0.0.1", gameContext.config.netPort,
                 nick, ups, ups * 2, 64,
