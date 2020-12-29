@@ -10,6 +10,7 @@ namespace Lem.Server {
         public void init(Config cfg) {
             // configure the server
             var serverConfig = new GlintNetServerContext.Config {
+                protocol = "Glint-Lem",
                 port = cfg.netPort,
                 ups = cfg.netUps,
                 timeout = cfg.netTimeout,

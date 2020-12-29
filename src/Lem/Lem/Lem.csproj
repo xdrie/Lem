@@ -12,7 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Glint.Networking" Version="0.4.0-beta" />
+        <PackageReference Include="Glint.Networking" Version="0.4.1-beta" />
         <PackageReference Include="System.CommandLine.DragonFruit" Version="0.3.0-alpha.20574.7" />
         <PackageReference Include="XNez" Version="0.10.4" />
         <PackageReference Include="XNez.Glint" Version="0.10.3-beta" />
