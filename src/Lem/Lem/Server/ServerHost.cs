@@ -8,13 +8,14 @@ namespace Lem.Server {
         public GlintNetServer server;
 
         public void init(Config cfg) {
+            Global.log.verbosity = (Logger.Verbosity) cfg.verbosity;
+
             // configure the server
             var serverConfig = new GlintNetServerContext.Config {
                 protocol = "Glint-Lem",
                 port = cfg.netPort,
                 ups = cfg.netUps,
                 timeout = cfg.netTimeout,
-                verbosity = (Logger.Verbosity) cfg.verbosity,
                 logMessages = cfg.netDebug,
             };
 
