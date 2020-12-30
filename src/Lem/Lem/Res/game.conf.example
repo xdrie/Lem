@@ -10,7 +10,7 @@ framerate=60
 
 [platform]
 log_level=4
-log_file=game.log
+# log_file=game.log
 
 [debug]
 clear_data=false

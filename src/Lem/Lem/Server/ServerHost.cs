@@ -1,7 +1,9 @@
 using Glint;
 using Glint.Networking;
+using Glint.Networking.Game;
 using Glint.Util;
 using Lem.Net.Relays;
+using Lime;
 
 namespace Lem.Server {
     public class ServerHost {
@@ -9,21 +11,23 @@ namespace Lem.Server {
 
         public void init(Config cfg) {
             Global.log.verbosity = (Logger.Verbosity) cfg.verbosity;
-
-            // configure the server
+            
+            // 1. configure the server
             var serverConfig = new GlintNetServerContext.Config {
-                protocol = "Glint-Lem",
-                port = cfg.netPort,
                 ups = cfg.netUps,
-                timeout = cfg.netTimeout,
                 logMessages = cfg.netDebug,
             };
 
-            server = new GlintNetServer(serverConfig);
-            server.initialize();
+            var peerConfig = NetConfigurator.createServerPeerConfig("Glint-Lem", cfg.netPort, cfg.netTimeout);
             
-            // register client assembly for message types
-            server.context.assemblies.Add(typeof(NGame).Assembly);
+            var node = new LimeServer(new LimeNode.Configuration {
+                peerConfig = peerConfig,
+                messageAssemblies = new [] {
+                    typeof(NetPlayer).Assembly, typeof(NGame).Assembly
+                }
+            });
+
+            server = new GlintNetServer(node, serverConfig);
 
             // register custom message handlers
             server.handlers.register(new BeepRelay(server.context));
@@ -31,7 +35,7 @@ namespace Lem.Server {
 
         public void run() {
             Global.log.writeLine("server started", Logger.Verbosity.Information);
-            server.run();
+            server.start();
         }
     }
 }
