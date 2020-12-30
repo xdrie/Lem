@@ -1,6 +1,6 @@
 using Glint;
 using Glint.Networking;
-using Glint.Networking.Handlers;
+using Glint.Networking.Pipeline;
 using Lem.Net.Messages;
 
 namespace Lem.Net.Relays {

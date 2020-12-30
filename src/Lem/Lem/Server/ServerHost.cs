@@ -20,7 +20,8 @@ namespace Lem.Server {
             };
 
             server = new GlintNetServer(serverConfig);
-            server.configure();
+            server.initialize();
+            
             // register client assembly for message types
             server.context.assemblies.Add(typeof(NGame).Assembly);
 

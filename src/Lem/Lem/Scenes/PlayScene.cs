@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 using Glint;
 using Glint.Networking;
@@ -9,6 +10,7 @@ using Lime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
+using Random = Nez.Random;
 
 namespace Lem.Scenes {
     public class PlayScene : BaseScene {
@@ -20,7 +22,7 @@ namespace Lem.Scenes {
             ClearColor = new Color(0x2f2732);
 
             gameContext.loadContent();
-            Glint.Global.log.info("creating play scene");
+            Global.log.info("creating play scene");
 
             // set up syncer
             var netClient = new LimeClient(new LimeNode.Configuration {
@@ -47,8 +49,8 @@ namespace Lem.Scenes {
 
             // add the processor for syncing bodies
             AddEntityProcessor(
-                new BodySyncerEntitySystem(syncer,
-                    SyncBodyMatcherProvider.createMatcher(Assembly.GetExecutingAssembly())) {
+                new RemoteBodySyncerSystem(syncer,
+                    RemoteBodySyncerSystem.createMatcher(Assembly.GetExecutingAssembly())) {
                     createSyncedEntity = createSyncedEntity
                 });
             // start the main syncer
@@ -57,16 +59,16 @@ namespace Lem.Scenes {
 
         private void connectionChanged(bool connected) {
             if (connected) {
-                Glint.Global.log.err("connected to server");
+                Global.log.err("connected to server");
             }
             else {
-                Glint.Global.log.err("disconnected from server");
+                Global.log.err("disconnected from server");
                 TransitionScene<MenuScene>();
             }
         }
 
         public Entity createSyncedEntity(string entityName, uint syncTag) {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public override void Update() {
@@ -91,6 +93,7 @@ namespace Lem.Scenes {
 
             Core.Services.RemoveService(typeof(ClientGameSyncer)); // unregister syncer
             syncer.stop();
+            syncer.Dispose();
         }
     }
 }

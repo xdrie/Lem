@@ -1,4 +1,4 @@
-using Glint.Networking.Messages;
+using Glint.Networking.Pipeline.Messages;
 using Lidgren.Network;
 using MsgPack.Serialization;
 

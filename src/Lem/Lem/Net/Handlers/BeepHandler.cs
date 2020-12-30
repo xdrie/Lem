@@ -1,7 +1,7 @@
 using System.Linq;
 using Glint;
 using Glint.Networking.Game;
-using Glint.Networking.Handlers;
+using Glint.Networking.Pipeline;
 using Lem.Net.Messages;
 
 namespace Lem.Net.Handlers {
