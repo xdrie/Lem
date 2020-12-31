@@ -21,7 +21,7 @@ namespace Lem.Components {
         public override void Initialize() {
             base.Initialize();
 
-            accel = new Vector2(0, 40f);
+            accel = new Vector2(0, 80f);
             facingX = Direction.Right;
         }
 
