@@ -13,7 +13,7 @@ using Nez;
 using Random = Nez.Random;
 
 namespace Lem.Scenes {
-    public class PlayScene : BaseScene {
+    public class NetPlayScene : BaseScene {
         public ClientGameSyncer syncer;
 
         public override void Initialize() {
