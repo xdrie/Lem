@@ -21,7 +21,7 @@ namespace Lem.Components {
         public override void Initialize() {
             base.Initialize();
 
-            accel = new Vector2(0, 30f);
+            accel = new Vector2(0, 40f);
             facingX = Direction.Right;
         }
 
@@ -68,21 +68,20 @@ namespace Lem.Components {
 
         protected override void applyMotion(Vector2 posDelta) {
             var motion = posDelta;
-            var moveCollisions = new List<CollisionResult>();
-            mov.AdvancedCalculateMovement(ref motion, moveCollisions);
-            foreach (var result in moveCollisions) {
-                if (result.Collider.Entity.HasComponent<TiledMapRenderer>()) {
-                    // collision with a wall
-                    motion -= result.MinimumTranslationVector;
+            if (Entity.GetComponent<BoxCollider>().CollidesWithAnyMultiple(motion, out var results)) {
+                foreach (var res in results) {
+                    if (res.Collider.Entity.HasComponent<TiledMapRenderer>()) {
+                        // collision with a wall
+                        motion -= res.MinimumTranslationVector;
 
-                    if (result.Normal.Y < 0) { // hit ground
-                        canJump = true;
-                    }
+                        if (res.Normal.Y < 0) { // hit ground
+                            canJump = true;
+                        }
+                    }       
                 }
             }
 
-            // apply our manually adjusted motion
-            mov.ApplyMovement(motion);
+            base.applyMotion(motion);
         }
     }
 }

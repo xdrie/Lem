@@ -11,7 +11,7 @@ namespace Lem.Scenes {
 
             ClearColor = new Color(219, 207, 177);
 
-            SetDesignResolution(240, 135, SceneResolutionPolicy.ShowAllPixelPerfect);
+            SetDesignResolution(480, 270, SceneResolutionPolicy.ShowAllPixelPerfect);
 
             // load map
             var mapAsset = Content.LoadTiledMap("Data/map/hill1.tmx");
@@ -32,6 +32,10 @@ namespace Lem.Scenes {
             var cam = Camera.Entity.AddComponent(new FollowCamera(me, FollowCamera.CameraStyle.LockOn));
             cam.FollowLerp = 0.3f;
             cam.RoundPosition = false;
+            Camera.SetMinimumZoom(1f);
+            Camera.SetMaximumZoom(2f);
+            Camera.SetZoom(1f);
+            cam.FocusOffset = new Vector2(120, 68); // compensate for zoom
         }
 
         public override void Update() {
