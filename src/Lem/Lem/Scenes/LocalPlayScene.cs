@@ -11,8 +11,6 @@ namespace Lem.Scenes {
 
             ClearColor = new Color(219, 207, 177);
 
-            Core.DebugRenderEnabled = true;
-
             SetDesignResolution(240, 135, SceneResolutionPolicy.ShowAllPixelPerfect);
 
             // load map
@@ -27,11 +25,13 @@ namespace Lem.Scenes {
 
             // spawn player
             var me = CreateEntity("player", new Vector2(meSpawn.X, meSpawn.Y));
+            me.AddComponent(new PlayerController());
             me.AddComponent(new Bippy());
 
             // add camera
             var cam = Camera.Entity.AddComponent(new FollowCamera(me, FollowCamera.CameraStyle.LockOn));
             cam.FollowLerp = 0.3f;
+            cam.RoundPosition = false;
         }
 
         public override void Update() {
@@ -39,6 +39,10 @@ namespace Lem.Scenes {
 
             if (Input.IsKeyPressed(Keys.Escape)) {
                 TransitionScene<MenuScene>();
+            }
+
+            if (Input.IsKeyPressed(Keys.OemQuestion)) {
+                Core.DebugRenderEnabled = !Core.DebugRenderEnabled;
             }
         }
     }

@@ -6,6 +6,9 @@ namespace Lem.Components {
 
         public override void Initialize() {
             base.Initialize();
+
+            Entity.AddComponent(new CharacterBody {runSpeed = 16, jumpSpeed = 24});
+            Entity.AddComponent(new BoxCollider(-3, -4, 4, 7));
         }
     }
 }
