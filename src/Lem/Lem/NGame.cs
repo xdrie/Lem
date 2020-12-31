@@ -3,6 +3,7 @@ using Glint.Branding;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Lem.Scenes;
+using Nez;
 
 namespace Lem {
     public class NGame : RGameBase<GameContext, Config> {
@@ -12,6 +13,9 @@ namespace Lem {
             base.Initialize();
 
             DefaultSamplerState = SamplerState.PointClamp;
+#if DEBUG
+            PauseOnFocusLost = false;
+#endif
 
             // fixed timestep for physics updates
             IsFixedTimeStep = true;
