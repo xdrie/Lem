@@ -1,6 +1,7 @@
 using System.Linq;
 using Lem.Components;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 using Nez;
 
 namespace Lem.Scenes {
@@ -9,6 +10,8 @@ namespace Lem.Scenes {
             base.Initialize();
 
             ClearColor = new Color(219, 207, 177);
+
+            Core.DebugRenderEnabled = true;
 
             SetDesignResolution(240, 135, SceneResolutionPolicy.ShowAllPixelPerfect);
 
@@ -29,6 +32,14 @@ namespace Lem.Scenes {
             // add camera
             var cam = Camera.Entity.AddComponent(new FollowCamera(me, FollowCamera.CameraStyle.LockOn));
             cam.FollowLerp = 0.3f;
+        }
+
+        public override void Update() {
+            base.Update();
+
+            if (Input.IsKeyPressed(Keys.Escape)) {
+                TransitionScene<MenuScene>();
+            }
         }
     }
 }
