@@ -15,6 +15,7 @@ namespace Lem {
         // - server config
         public const string NET = "net";
         public int netPort = 14887;
+        public string netHost = "127.0.0.1";
         public int netTimeout = GlintNetServer.DEF_TIMEOUT;
         public int netUps = GlintNetServer.DEF_UPS;
         public bool netDebug = false;
@@ -23,6 +24,7 @@ namespace Lem {
             base.load();
 
             pr.bind(ref netPort, NET, "port");
+            pr.bind(ref netHost, NET, "host");
             pr.bind(ref netTimeout, NET, "timeout");
             pr.bind(ref netUps, NET, "ups");
             pr.bind(ref netDebug, NET, "debug");
