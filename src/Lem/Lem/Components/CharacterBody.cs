@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Glint;
 using Glint.Physics;
+using Glint.Util;
 using Microsoft.Xna.Framework;
 using Nez;
 
@@ -74,7 +75,20 @@ namespace Lem.Components {
                         // collision with a wall
                         motion -= res.MinimumTranslationVector;
 
-                        if (res.Normal.Y < 0) { // hit ground
+                        var ground = res.Normal.Y < 0;
+                        var roof = res.Normal.Y > 0;
+                        var leftWall = res.Normal.X > 0;
+                        var rightWall = res.Normal.X > 0;
+                        
+                        if (ground || roof) {
+                            velocity.Y = 0;
+                        }
+
+                        if (leftWall || rightWall) {
+                            velocity.X = 0;
+                        }
+                        
+                        if (ground) { // hit ground
                             canJump = true;
                         }
                     }       
