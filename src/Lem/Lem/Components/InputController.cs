@@ -11,8 +11,8 @@ namespace Lem.Components {
         public override void Initialize() {
             base.Initialize();
 
-            move.AddKeyboardKeys(VirtualInput.OverlapBehavior.CancelOut, Keys.A, Keys.D, Keys.W, Keys.S);
-            jump.AddKeyboardKey(Keys.Space);
+            move.AddKeyboardKeys(VirtualInput.OverlapBehavior.CancelOut, Keys.Left, Keys.Right, Keys.Up, Keys.Down);
+            jump.AddKeyboardKey(Keys.Z);
         }
     }
 }
