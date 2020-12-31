@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="128" height="128" tilewidth="8" tileheight="8" infinite="0" nextlayerid="2" nextobjectid="1">
- <layer id="1" name="Tile Layer 1" width="128" height="128">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="128" height="64" tilewidth="8" tileheight="8" infinite="0" nextlayerid="6" nextobjectid="2">
+ <tileset firstgid="1" source="tiles.tsx"/>
+ <layer id="1" name="ground" width="128" height="64">
   <data encoding="base64" compression="zlib">
-   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGoADwAB
+   eJzt0rEJwgAQhtHLdiIuoAYzg2aBCJoFbBw3f0A7axPCe/BxcNUVVwUAAAAAAAAAAAAAwBY90jNd061qmOelqTqlc2pTv+yJLOz7I2Pa5R/2TQ3zPKR7dl3m8fMrbNf7x+719ysAAAAAAAAAAAAAAAAAAAAAAAAA1mEC+QYKwA==
+  </data>
+ </layer>
+ <layer id="2" name="foil1" width="128" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt08ENQEAURdFBC7RACbRAD6IJlaiUDvyFBiwYiXOSu5rNS34mJQAAAAAAAAAAAOBP9ujIPYJsyiKlqsi9grf10RDVcfvmuv98va2ZNvGeMZqiNm7f3fz/S7Q9sAkAAAAAAAAAAAAAAAAAAAAAAAAA4KtOiSMFJw==
+  </data>
+ </layer>
+ <layer id="4" name="foil2" width="128" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztyAEJACAQBMErZgM7aBSj+8K3cAaOg00AAAAAAAAAAAAAgB+s5Lwftd1tdgMAAAAAAAAAAAAAAAAAAAAAAAAAAJILiPkCSQ==
+  </data>
+ </layer>
+ <objectgroup id="5" name="mark">
+  <object id="1" name="spawn_1" type="spawn" x="152" y="176" width="8" height="8"/>
+ </objectgroup>
+ <layer id="3" name="sky" width="128" height="64">
+  <data encoding="base64" compression="zlib">
+   eJztwQEBAAAAgJD+r+4ICgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAYgAAAAQ==
   </data>
  </layer>
 </map>
