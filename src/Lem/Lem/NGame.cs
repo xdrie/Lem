@@ -23,7 +23,13 @@ namespace Lem {
             Scene = new DevLogoScene<GameContext, Config, MenuScene>(
                 new DevLogoSprite(Content.LoadTexture("Data/img/devlogo.png"),
                     32, 32),
-                context.assets.palettePurple);
+                context.assets.palettePurple,
+#if DEBUG
+                0
+#else
+                1f
+#endif
+            );
         }
     }
 }
