@@ -25,7 +25,7 @@ namespace Lem.Scenes {
 
 
             if (Input.IsKeyPressed(Keys.E)) {
-                TransitionScene<NetPlayScene>();
+                TransitionScene<LocalPlayScene>();
             }
 
             if (Input.IsKeyPressed(Keys.Escape)) {
