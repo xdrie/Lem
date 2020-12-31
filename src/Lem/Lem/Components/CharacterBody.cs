@@ -10,11 +10,6 @@ namespace Lem.Components {
     public class CharacterBody : KinBody {
         private InputController? input;
 
-        /// <summary>
-        /// horizontal facing direction
-        /// </summary>
-        public Direction facingX;
-
         public float runSpeed;
         public float jumpSpeed;
         public bool canJump = true;
@@ -23,7 +18,6 @@ namespace Lem.Components {
             base.Initialize();
 
             accel = new Vector2(0, 80f);
-            facingX = Direction.Right;
         }
 
         public override void OnAddedToEntity() {
@@ -42,15 +36,10 @@ namespace Lem.Components {
         }
 
         private void updateInput() {
+            if (input == null) return;
+            
             // 1. left right running
             var lrMove = input.move.Value.X;
-            if (lrMove < 0) {
-                facingX = Direction.Right;
-            }
-
-            if (lrMove > 0) {
-                facingX = Direction.Left;
-            }
 
             var xSpeed = runSpeed * lrMove;
             if (Math.Abs(xSpeed) > 0) {
