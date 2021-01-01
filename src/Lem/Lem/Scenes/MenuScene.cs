@@ -26,7 +26,7 @@ namespace Lem.Scenes {
 
             if (Input.IsKeyPressed(Keys.E) ||
                 (Input.GamePads.Length > 0 && Input.GamePads[0].IsButtonPressed(Buttons.A))) {
-                TransitionScene<LocalPlayScene>();
+                TransitionScene<NetPlayScene>();
             }
 
             if (Input.IsKeyPressed(Keys.Escape) ||
