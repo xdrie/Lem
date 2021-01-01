@@ -19,7 +19,7 @@ namespace Lem.Scenes {
             // load map
             var mapAsset = Content.LoadTiledMap("Data/map/hill1.tmx");
             var mapNt = CreateEntity("map");
-            var mapRen = mapNt.AddComponent(new TiledMapRenderer(mapAsset, "ground", true));
+            var mapRen = mapNt.AddComponent(new TiledMapRenderer(mapAsset, "ground", true, Constants.Colliders.TAG_MAP));
 
             // get spawn point
             var markGroup = mapAsset.GetObjectGroup("mark");

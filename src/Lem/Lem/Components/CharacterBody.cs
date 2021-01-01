@@ -60,7 +60,7 @@ namespace Lem.Components {
             var motion = posDelta;
             if (Entity.GetComponent<BoxCollider>().CollidesWithAnyMultiple(motion, out var results)) {
                 foreach (var res in results) {
-                    if (res.Collider.Entity.HasComponent<TiledMapRenderer>()) {
+                    if (res.Collider.Tag == Constants.Colliders.TAG_MAP) {
                         // collision with a wall
                         motion -= res.MinimumTranslationVector;
 
