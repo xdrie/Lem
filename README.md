@@ -18,13 +18,17 @@ cd src/Lem/Lem/
 dotnet run -- -Cplatform.verbosity=4
 ```
 
-add `-Cplatform.verbosity=4` and `-Cnet.debug=true` to get more detailed network logs.
-
 ### release
 
 ```sh
 ./script/build_arc.sh <runtime> # ex. one of linux-x64, osx-x64, win-x64
 ```
+
+## running
+
+run `./Lem`.
+add `-Cplatform.verbosity=4` and `-Cnet.debug=true` to get more detailed network logs.
+pass `--server` to run the server instead of the client.
 
 ## license
 
