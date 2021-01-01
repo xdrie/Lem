@@ -7,7 +7,7 @@ using Nez.BitmapFonts;
 namespace Lem {
     public class Config : GameConfig {
         public const string GAME_NAME = "Lem";
-        public const string GAME_VERSION = "v0.2.1";
+        public const string GAME_VERSION = "v0.2.2";
 
         public override string title => GAME_NAME;
         public override string version => GAME_VERSION;
