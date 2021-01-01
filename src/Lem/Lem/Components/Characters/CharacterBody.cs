@@ -2,6 +2,8 @@ using System;
 using Glint;
 using Glint.Networking.Components;
 using Glint.Physics;
+using Lem.Components.Things;
+using Lem.Game;
 using Microsoft.Xna.Framework;
 using Nez;
 
@@ -12,6 +14,9 @@ namespace Lem.Components.Characters {
         public float runSpeed;
         public float jumpSpeed;
         public bool canJump = true;
+        private float shootTimer = 0;
+        private const float shootDelay = 0.3f;
+        private const float muzzleVel = 80f;
 
         public override void Initialize() {
             base.Initialize();
@@ -52,6 +57,14 @@ namespace Lem.Components.Characters {
             if (input.jump && canJump) {
                 velocity.Y = -jumpSpeed;
                 canJump = false;
+            }
+            
+            // 3. shoot
+            if (input.shoot && Time.TotalTime >= shootTimer) {
+                shootTimer = Time.TotalTime + shootDelay;
+                // make a bullet
+                var xDir = Entity.GetComponent<Character>().facing == Direction.Right ? 1 : -1;
+                ThingMaker.makeBullet(Entity.Position + new Vector2(xDir * 4, 1), muzzleVel, xDir);
             }
         }
 

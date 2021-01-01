@@ -32,18 +32,18 @@ namespace Lem {
     }
 
     public class GameContext : ContextBase<Config> {
-        public Assets assets { get; } = new Assets();
+        public Assets assets { get; } = new();
 
         public class Assets {
             public BitmapFont font;
 
             // - default palette
             public Color[] palette = {
-                new Color(237, 229, 206), // white
-                new Color(142, 156, 157), // gray
-                new Color(170, 92, 86), // orange
-                new Color(136, 113, 99), // brown
-                new Color(47, 39, 50), // purple
+                new(237, 229, 206), // white
+                new(142, 156, 157), // gray
+                new(170, 92, 86), // orange
+                new(136, 113, 99), // brown
+                new(47, 39, 50), // purple
             };
 
             public ref Color fgColor => ref paletteWhite;
@@ -56,11 +56,11 @@ namespace Lem {
             public ref Color palettePurple => ref palette[4];
 
             // some more useful colors
-            public Color colGreen = new Color(137, 202, 143);
-            public Color colBlue = new Color(98, 161, 179);
-            public Color colYellow = new Color(190, 175, 91);
-            public Color colOrange = new Color(189, 133, 91);
-            public Color colRed = new Color(189, 91, 91);
+            public Color colGreen = new(137, 202, 143);
+            public Color colBlue = new(98, 161, 179);
+            public Color colYellow = new(190, 175, 91);
+            public Color colOrange = new(189, 133, 91);
+            public Color colRed = new(189, 91, 91);
         }
 
         public GameContext(Config config) : base(config) { }
