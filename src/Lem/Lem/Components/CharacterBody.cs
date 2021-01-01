@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Nez;
 
 namespace Lem.Components {
-    public class CharacterBody : SyncBody {
+    public abstract class CharacterBody : SyncBody {
         private InputController? input;
 
         public float runSpeed;
@@ -85,7 +85,6 @@ namespace Lem.Components {
             base.applyMotion(motion);
         }
 
-        public override uint bodyType { get; } = Constants.SyncTags.TAG_PLAYER;
-        public override InterpolationType interpolationType { get; } = InterpolationType.None;
+        public override InterpolationType interpolationType { get; } = InterpolationType.Linear;
     }
 }
