@@ -81,6 +81,8 @@ namespace Lem.Scenes {
                 nick, ups, ups, 64,
                 debug: gameContext.config.netDebug);
             syncer.connectionStatusChanged += connectionChanged;
+            if (Core.Services.GetService<ClientGameSyncer>() != null)
+                Core.Services.RemoveService(typeof(ClientGameSyncer));
             Core.Services.AddService(syncer); // register syncer
 
             // register custom message handlers
