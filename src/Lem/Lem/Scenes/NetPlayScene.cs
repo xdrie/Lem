@@ -74,7 +74,7 @@ namespace Lem.Scenes {
                     {typeof(GameSyncer).Assembly, Assembly.GetExecutingAssembly()}
             });
 
-            var ups = 1000 / gameContext.config.netUps;
+            var ups = gameContext.config.netUps;
             var nick = "player";
             netHost = gameContext.config.netHost;
             syncer = new ClientGameSyncer(netClient, netHost, gameContext.config.netPort,
