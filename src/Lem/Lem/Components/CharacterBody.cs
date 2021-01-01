@@ -1,6 +1,7 @@
 using System;
 using Glint;
 using Glint.Networking.Components;
+using Glint.Physics;
 using Microsoft.Xna.Framework;
 using Nez;
 
@@ -35,7 +36,7 @@ namespace Lem.Components {
 
         private void updateInput() {
             if (input == null) return;
-            
+
             // 1. left right running
             var lrMove = input.move.Value.X;
 
@@ -46,7 +47,7 @@ namespace Lem.Components {
             else {
                 velocity.X = 0;
             }
-            
+
             // 2. jump
             if (input.jump && canJump) {
                 velocity.Y = -jumpSpeed;
@@ -58,15 +59,15 @@ namespace Lem.Components {
             var motion = posDelta;
             if (Entity.GetComponent<BoxCollider>().CollidesWithAnyMultiple(motion, out var results)) {
                 foreach (var res in results) {
+                    var ground = res.Normal.Y < 0;
+                    var roof = res.Normal.Y > 0;
+                    var leftWall = res.Normal.X > 0;
+                    var rightWall = res.Normal.X > 0;
+
                     if (res.Collider.Tag == Constants.Colliders.TAG_MAP) {
                         // collision with a wall
                         motion -= res.MinimumTranslationVector;
 
-                        var ground = res.Normal.Y < 0;
-                        var roof = res.Normal.Y > 0;
-                        var leftWall = res.Normal.X > 0;
-                        var rightWall = res.Normal.X > 0;
-                        
                         if (ground || roof) {
                             velocity.Y = 0;
                         }
@@ -74,11 +75,24 @@ namespace Lem.Components {
                         if (leftWall || rightWall) {
                             velocity.X = 0;
                         }
-                        
+
                         if (ground) { // hit ground
                             canJump = true;
                         }
-                    }       
+                    }
+
+                    if (res.Collider.Tag == Constants.Colliders.TAG_CHARACTER) {
+                        if (ground) {
+                            if (velocity.Y > 0) {
+                                // headstool
+                                var other = res.Collider.Entity.GetComponent<KinBody>();
+                                other.velocity.Y += velocity.Y; // give my velocity to them
+                            }
+
+                            velocity.Y = 0; // zero out mine
+                            canJump = true;
+                        }
+                    }
                 }
             }
 
