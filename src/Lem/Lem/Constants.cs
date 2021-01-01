@@ -10,6 +10,8 @@ namespace Lem {
         /// </summary>
         public static class SyncTags {
             public const uint TAG_PLAYER = 0xc01;
+            public const uint TAG_BALL = 0xc02;
+            public const uint TAG_BULLET = 0xc03;
         }
     }
 }

@@ -5,7 +5,7 @@ using Glint.Physics;
 using Microsoft.Xna.Framework;
 using Nez;
 
-namespace Lem.Components {
+namespace Lem.Components.Characters {
     public abstract class CharacterBody : SyncBody {
         private InputController? input;
 

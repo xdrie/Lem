@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Nez;
 using Nez.Sprites;
 
-namespace Lem.Components {
+namespace Lem.Components.Characters {
     public abstract class Character : GAnimatedSprite, IUpdatable {
         public CharacterBody? body;
         public BoxCollider? hitbox;

@@ -5,6 +5,7 @@ using Glint.Networking;
 using Glint.Networking.EntitySystems;
 using Glint.Networking.Game;
 using Lem.Components;
+using Lem.Components.Characters;
 using Lem.Net.Handlers;
 using Lem.Net.Messages;
 using Lime;
