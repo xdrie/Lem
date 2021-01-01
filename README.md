@@ -1,6 +1,8 @@
 # Lem
 
-a cute little multiplayer demo for XNG (XNez + Glint + Glint.Networking)'
+a cute little networked multiplayer demo for XNG (XNez + Glint + Glint.Networking)
+
+![screenshot](media/lem_2020-12-31_19-23.png)
 
 ## build
 
