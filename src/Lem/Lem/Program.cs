@@ -54,7 +54,7 @@ namespace Lem {
 #if !DEBUG
         }
         catch (Exception ex) {
-            Global.log.writeLine($"fatal error: {ex}", GlintLogger.LogLevel.Critical);
+            Global.log.writeLine($"fatal error: {ex}", Logger.Verbosity.Critical);
             throw;
         }
 #endif
