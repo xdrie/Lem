@@ -1,6 +1,7 @@
 using System;
 using Glint;
 using Glint.Networking.Components;
+using Glint.Networking.Game;
 using Glint.Physics;
 using Lem.Game;
 using Microsoft.Xna.Framework;
@@ -10,6 +11,7 @@ namespace Lem.Components.Characters {
     public abstract class CharacterBody : SyncBody {
         private InputController? input;
 
+        public bool isRemote { get; private set; }
         public float runSpeed;
         public float jumpSpeed;
         public bool canJump = true;
@@ -21,13 +23,17 @@ namespace Lem.Components.Characters {
             base.Initialize();
 
             accel = new Vector2(0, 80f);
+            
+            // check if remote
+            var syncer = Core.Services.GetService<ClientGameSyncer>();
+            isRemote = syncer?.uid != bodyId;
         }
 
         public override void OnAddedToEntity() {
             base.OnAddedToEntity();
 
             input = Entity.GetComponent<InputController>();
-            if (input == null) {
+            if (input == null && !isRemote) {
                 Global.log.err($"char body couldn't find input controller on {Entity}");
             }
         }
