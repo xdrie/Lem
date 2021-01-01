@@ -2,7 +2,6 @@ using System;
 using Glint;
 using Glint.Networking.Components;
 using Glint.Physics;
-using Lem.Components.Things;
 using Lem.Game;
 using Microsoft.Xna.Framework;
 using Nez;
@@ -15,8 +14,8 @@ namespace Lem.Components.Characters {
         public float jumpSpeed;
         public bool canJump = true;
         private float shootTimer = 0;
-        private const float shootDelay = 0.3f;
-        private const float muzzleVel = 80f;
+        private const float shootDelay = 1f;
+        private const float muzzleVel = 100f;
 
         public override void Initialize() {
             base.Initialize();
