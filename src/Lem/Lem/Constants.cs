@@ -1,8 +1,8 @@
 namespace Lem {
     public static class Constants {
         public static class Colliders {
-            public const int TAG_CHARACTER = 0x01;
             public const int TAG_MAP = 0x01;
+            public const int TAG_CHARACTER = 0x02;
         }
 
         /// <summary>
