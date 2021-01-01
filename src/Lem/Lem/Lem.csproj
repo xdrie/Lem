@@ -10,7 +10,7 @@
 <!--        <PublishSingleFile>true</PublishSingleFile>-->
         <PublishTrimmed>true</PublishTrimmed>
         <TrimMode>Link</TrimMode>
-        <BeautyLibsDir>libs</BeautyLibsDir>
+<!--        <BeautyLibsDir>libs</BeautyLibsDir>-->
     </PropertyGroup>
 
     <ItemGroup>
@@ -20,7 +20,7 @@
 
     <ItemGroup>
         <PackageReference Include="Glint.Networking" Version="0.7.2-beta" />
-        <PackageReference Include="nulastudio.NetCoreBeauty" Version="1.2.9.2" />
+<!--        <PackageReference Include="nulastudio.NetCoreBeauty" Version="1.2.9.2" />-->
         <PackageReference Include="System.CommandLine.DragonFruit" Version="0.3.0-alpha.20574.7" />
         <PackageReference Include="XNez" Version="0.10.5.1" />
         <PackageReference Include="XNez.Glint" Version="0.10.4.1-beta" />
