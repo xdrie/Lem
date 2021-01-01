@@ -6,6 +6,8 @@ using Glint.Networking.EntitySystems;
 using Glint.Networking.Game;
 using Lem.Components;
 using Lem.Components.Characters;
+using Lem.Components.Things;
+using Lem.Game;
 using Lem.Net.Handlers;
 using Lem.Net.Messages;
 using Lime;
@@ -125,6 +127,10 @@ namespace Lem.Scenes {
                     var bippy = syncNt.AddComponent<Bippy>();
                     bippy.spriteRenderer.Color = new Color(220, 160, 255);
                     component = bippy;
+                    break;
+                case Constants.SyncTags.TAG_BULLET:
+                    var bullet = syncNt.AddComponent(new Bullet());
+                    component = bullet;
                     break;
                 default:
                     return null;
