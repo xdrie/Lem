@@ -119,7 +119,9 @@ namespace Lem.Scenes {
             var component = default(Component);
             switch (syncTag) {
                 case Constants.SyncTags.TAG_PLAYER:
-                    component = syncNt.AddComponent<Bippy>();
+                    var bippy = syncNt.AddComponent<Bippy>();
+                    bippy.spriteRenderer.Color = new Color(220, 160, 255);
+                    component = bippy;
                     break;
                 default:
                     return null;
