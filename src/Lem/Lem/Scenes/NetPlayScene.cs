@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Reflection;
 using Glint;
@@ -12,7 +11,6 @@ using Lime;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Nez;
-using Random = Nez.Random;
 
 namespace Lem.Scenes {
     public class NetPlayScene : BaseScene {
@@ -117,7 +115,19 @@ namespace Lem.Scenes {
         }
 
         public Entity createSyncedEntity(string entityName, uint syncTag) {
-            throw new NotImplementedException();
+            var syncNt = CreateEntity(entityName);
+            var component = default(Component);
+            switch (syncTag) {
+                case Constants.SyncTags.TAG_PLAYER:
+                    component = syncNt.AddComponent<Bippy>();
+                    break;
+                default:
+                    return null;
+            }
+
+            component.Entity = syncNt;
+
+            return syncNt;
         }
 
         public override void Update() {

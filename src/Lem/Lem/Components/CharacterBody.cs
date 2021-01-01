@@ -1,13 +1,11 @@
 using System;
-using System.Collections.Generic;
 using Glint;
-using Glint.Physics;
-using Glint.Util;
+using Glint.Networking.Components;
 using Microsoft.Xna.Framework;
 using Nez;
 
 namespace Lem.Components {
-    public class CharacterBody : KinBody {
+    public class CharacterBody : SyncBody {
         private InputController? input;
 
         public float runSpeed;
@@ -86,5 +84,8 @@ namespace Lem.Components {
 
             base.applyMotion(motion);
         }
+
+        public override uint bodyType { get; } = Constants.SyncTags.TAG_PLAYER;
+        public override InterpolationType interpolationType { get; } = InterpolationType.None;
     }
 }
