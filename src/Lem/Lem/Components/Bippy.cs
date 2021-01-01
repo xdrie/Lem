@@ -28,7 +28,7 @@ namespace Lem.Components {
 
             public override uint bodyType { get; } = Constants.SyncTags.TAG_PLAYER;
             public override InterpolatedFields interpolatedFields { get; } = InterpolatedFields.All;
-            public override InterpolationType interpolationType { get; } = InterpolationType.None;
+            public override InterpolationType interpolationType { get; } = InterpolationType.Hermite;
         }
     }
 }
