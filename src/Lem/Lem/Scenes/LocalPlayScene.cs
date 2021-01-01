@@ -6,6 +6,9 @@ using Nez;
 
 namespace Lem.Scenes {
     public class LocalPlayScene : BaseScene {
+        private const int renderlayer_overlay = 1 << 30;
+        private const int renderlayer_map = 512;
+
         public override void Initialize() {
             base.Initialize();
 
@@ -27,6 +30,11 @@ namespace Lem.Scenes {
             var me = CreateEntity("player", new Vector2(meSpawn.X, meSpawn.Y));
             me.AddComponent(new PlayerController());
             me.AddComponent(new Bippy());
+            
+            // text
+            var statusNt = CreateEntity("status_text", new Vector2(20, 20));
+            var statusText = statusNt.AddComponent(new TextComponent(gameContext.assets.font, "local game", Vector2.Zero, Color.White));
+            statusText.RenderLayer = renderlayer_overlay;
 
             // add camera
             var cam = Camera.Entity.AddComponent(new FollowCamera(me, FollowCamera.CameraStyle.LockOn));
@@ -36,6 +44,13 @@ namespace Lem.Scenes {
             Camera.SetMaximumZoom(2f);
             Camera.SetZoom(1f);
             cam.FocusOffset = new Vector2(120, 68); // compensate for zoom
+
+            // update renderers
+            var fixedRenderer =
+                AddRenderer(new ScreenSpaceRenderer(1023, renderlayer_overlay));
+            fixedRenderer.ShouldDebugRender = false;
+
+            mainRenderer.RenderLayers.AddRange(new[] {renderlayer_map});
         }
 
         public override void Update() {
