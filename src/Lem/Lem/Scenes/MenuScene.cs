@@ -24,12 +24,14 @@ namespace Lem.Scenes {
             base.Update();
 
 
-            if (Input.IsKeyPressed(Keys.E)) {
+            if (Input.IsKeyPressed(Keys.E) ||
+                (Input.GamePads.Length > 0 && Input.GamePads[0].IsButtonPressed(Buttons.A))) {
                 TransitionScene<LocalPlayScene>();
             }
 
-            if (Input.IsKeyPressed(Keys.Escape)) {
-                // end this scene
+            if (Input.IsKeyPressed(Keys.Escape) ||
+                (Input.GamePads.Length > 0 && Input.GamePads[0].IsButtonPressed(Buttons.Back))) {
+                // end this scene[0] = GamePadData 
                 Core.Exit();
             }
         }

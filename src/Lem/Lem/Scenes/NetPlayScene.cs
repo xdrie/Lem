@@ -74,13 +74,15 @@ namespace Lem.Scenes {
         public override void Update() {
             base.Update();
 
-            if (Input.IsKeyPressed(Keys.Escape)) {
+            if (Input.IsKeyPressed(Keys.Escape) ||
+                (Input.GamePads.Length > 0 && Input.GamePads[0].IsButtonPressed(Buttons.Back))) {
                 // request disconnect
                 syncer.disconnect();
                 TransitionScene<MenuScene>();
             }
 
-            if (Input.IsKeyPressed(Keys.Space)) {
+            if (Input.IsKeyPressed(Keys.Space) ||
+                (Input.GamePads.Length > 0 && Input.GamePads[0].IsButtonPressed(Buttons.Start))) {
                 // send net signal
                 var beep = syncer.createGameUpdate<BeepMessage>();
                 beep.pips = Random.Range(1, 8);
