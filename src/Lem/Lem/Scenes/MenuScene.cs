@@ -8,7 +8,7 @@ namespace Lem.Scenes {
             base.OnStart();
 
             var ui = CreateEntity("ui");
-            var ui_title = CreateEntity("ui_title");
+            var uiTitle = CreateEntity("ui_title");
 
             // display game version
             var versionStr = Config.GAME_VERSION;
@@ -16,10 +16,10 @@ namespace Lem.Scenes {
                 new Vector2(10, DesignResolution.Y - 20f), gameContext.assets.fgColor));
 
             // add placeholder title text
-            var titleText = ui_title.AddComponent(new TextComponent(gameContext.assets.font, Config.GAME_NAME,
+            var titleText = uiTitle.AddComponent(new TextComponent(gameContext.assets.font, Config.GAME_NAME,
                 new Vector2(DesignResolution.X / 2f, 200f), gameContext.assets.fgColor));
             titleText.LocalOffset += new Vector2(-titleText.Width, 0);
-            ui_title.Scale = new Vector2(2f, 2f);
+            uiTitle.Scale = new Vector2(2f, 2f);
 
             // add placeholder start text
             var startStr = "Start (E) [A btn]";
