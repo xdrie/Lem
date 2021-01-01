@@ -8,8 +8,8 @@
 
     <PropertyGroup>
 <!--        <PublishSingleFile>true</PublishSingleFile>-->
-        <PublishTrimmed>true</PublishTrimmed>
-        <TrimMode>Link</TrimMode>
+<!--        <PublishTrimmed>true</PublishTrimmed>-->
+<!--        <TrimMode>Link</TrimMode>-->
 <!--        <BeautyLibsDir>libs</BeautyLibsDir>-->
     </PropertyGroup>
 
@@ -35,15 +35,15 @@
     <!-- CoreRT Support -->
 
     <ItemGroup Condition="'$(UseCoreRT)' != ''">
-        <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="1.0.0-alpha-*" />
+        <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="6.0.0-*" />
     </ItemGroup>
 
     <PropertyGroup Condition="'$(UseCoreRT)' != ''">
         <DefineConstants>$(DefineConstants);CORERT</DefineConstants>
         <IlcGenerateCompleteTypeMetadata>false</IlcGenerateCompleteTypeMetadata>
-        <IlcOptimizationPreference>Size</IlcOptimizationPreference>
-        <IlcInvariantGlobalization>true</IlcInvariantGlobalization>
-        <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>
+<!--        <IlcOptimizationPreference>Size</IlcOptimizationPreference>-->
+<!--        <IlcInvariantGlobalization>true</IlcInvariantGlobalization>-->
+<!--        <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>-->
     </PropertyGroup>
 
     <ItemGroup>
