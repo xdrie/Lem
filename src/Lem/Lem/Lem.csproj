@@ -25,23 +25,26 @@
 
 
     <!-- CoreRT Support -->
+    <Choose>
+        <When Condition="'$(BuildType)' == 'publish'">
+            <ItemGroup Condition="'$(UseCoreRT)' != ''">
+                <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="6.0.0-*"/>
+            </ItemGroup>
 
-    <ItemGroup Condition="'$(UseCoreRT)' != ''">
-        <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="6.0.0-*"/>
-    </ItemGroup>
-
-    <PropertyGroup Condition="'$(UseCoreRT)' != ''">
-        <DefineConstants>$(DefineConstants);CORERT</DefineConstants>
-        <IlcGenerateCompleteTypeMetadata>false</IlcGenerateCompleteTypeMetadata>
-        <!--        <IlcOptimizationPreference>Size</IlcOptimizationPreference>-->
-        <!--        <IlcInvariantGlobalization>true</IlcInvariantGlobalization>-->
-        <!--        <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>-->
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(UseCoreRT)' == ''">
-        <PublishSingleFile>true</PublishSingleFile>
-        <PublishTrimmed>true</PublishTrimmed>
-        <TrimMode>Link</TrimMode>
-    </PropertyGroup>
+            <PropertyGroup Condition="'$(UseCoreRT)' != ''">
+                <DefineConstants>$(DefineConstants);CORERT</DefineConstants>
+                <IlcGenerateCompleteTypeMetadata>false</IlcGenerateCompleteTypeMetadata>
+                <!--        <IlcOptimizationPreference>Size</IlcOptimizationPreference>-->
+                <!--        <IlcInvariantGlobalization>true</IlcInvariantGlobalization>-->
+                <!--        <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>-->
+            </PropertyGroup>
+            <PropertyGroup Condition="'$(UseCoreRT)' == ''">
+                <PublishSingleFile>true</PublishSingleFile>
+                <PublishTrimmed>true</PublishTrimmed>
+                <TrimMode>Link</TrimMode>
+            </PropertyGroup>
+        </When>
+    </Choose>
 
     <ItemGroup>
         <RdXmlFile Include="rd.xml"/>
