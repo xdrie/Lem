@@ -5,6 +5,7 @@ using Glint;
 using Glint.Config;
 using Glint.Util;
 using Lem.Server;
+using Nez;
 
 #if !DEBUG
 using Glint.Util;
@@ -14,7 +15,7 @@ namespace Lem {
     class Program {
         public const string conf = "game.conf";
 
-        static void Main(bool server = false, string[]? args = null) {
+        static void Main(string[] args) {
 #if CORERT
             // CoreRT switch (https://github.com/dotnet/corert/issues/6946#issuecomment-464611673)
             AppContext.SetSwitch("Switch.System.Reflection.Assembly.SimulatedLocationInBaseDirectory", true);
@@ -35,12 +36,12 @@ namespace Lem {
             var confPath = Path.Join(Global.baseDir, conf);
             configHelper.ensureDefaultConfig(confPath, defaultConf);
             var confStr = File.ReadAllText(confPath);
-            var config = configHelper.load(confStr, args ?? new string[0]); // load and parse config
+            var config = configHelper.load(confStr, args); // load and parse config
             // run in crash-cradle (only if NOT debug)
 #if !DEBUG
             try {
 #endif
-            if (server) {
+            if (args.Contains("--server")) {
                 Global.log.writeLine("created server", Logger.Verbosity.Information);
                 
                 var host = new ServerHost();
