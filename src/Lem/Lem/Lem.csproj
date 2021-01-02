@@ -6,47 +6,45 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <PropertyGroup>
-        <PublishSingleFile>true</PublishSingleFile>
-        <PublishTrimmed>true</PublishTrimmed>
-        <TrimMode>Link</TrimMode>
-<!--        <BeautyLibsDir>libs</BeautyLibsDir>-->
-    </PropertyGroup>
-
     <ItemGroup>
-        <Content Include="Data/**/*" CopyToOutputDirectory="PreserveNewest" />
-        <EmbeddedResource Include="Res/**/*" />
+        <Content Include="Data/**/*" CopyToOutputDirectory="PreserveNewest"/>
+        <EmbeddedResource Include="Res/**/*"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Glint.Networking" Version="0.7.2-beta" />
-<!--        <PackageReference Include="nulastudio.NetCoreBeauty" Version="1.2.9.2" />-->
-        <PackageReference Include="XNez" Version="0.10.5.1" />
-        <PackageReference Include="XNez.Glint" Version="0.10.4.1-beta" />
+        <PackageReference Include="Glint.Networking" Version="0.7.2-beta"/>
+        <!--        <PackageReference Include="nulastudio.NetCoreBeauty" Version="1.2.9.2" />-->
+        <PackageReference Include="XNez" Version="0.10.5.1"/>
+        <PackageReference Include="XNez.Glint" Version="0.10.4.1-beta"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Data" />
-        <Folder Include="Res" />
+        <Folder Include="Data"/>
+        <Folder Include="Res"/>
     </ItemGroup>
 
 
     <!-- CoreRT Support -->
 
     <ItemGroup Condition="'$(UseCoreRT)' != ''">
-        <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="6.0.0-*" />
+        <PackageReference Include="Microsoft.DotNet.ILCompiler" Version="6.0.0-*"/>
     </ItemGroup>
 
     <PropertyGroup Condition="'$(UseCoreRT)' != ''">
         <DefineConstants>$(DefineConstants);CORERT</DefineConstants>
         <IlcGenerateCompleteTypeMetadata>false</IlcGenerateCompleteTypeMetadata>
-<!--        <IlcOptimizationPreference>Size</IlcOptimizationPreference>-->
-<!--        <IlcInvariantGlobalization>true</IlcInvariantGlobalization>-->
-<!--        <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>-->
+        <!--        <IlcOptimizationPreference>Size</IlcOptimizationPreference>-->
+        <!--        <IlcInvariantGlobalization>true</IlcInvariantGlobalization>-->
+        <!--        <IlcFoldIdenticalMethodBodies>true</IlcFoldIdenticalMethodBodies>-->
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(UseCoreRT)' == ''">
+        <PublishSingleFile>true</PublishSingleFile>
+        <PublishTrimmed>true</PublishTrimmed>
+        <TrimMode>Link</TrimMode>
     </PropertyGroup>
 
     <ItemGroup>
-        <RdXmlFile Include="rd.xml" />
+        <RdXmlFile Include="rd.xml"/>
     </ItemGroup>
 
 </Project>
